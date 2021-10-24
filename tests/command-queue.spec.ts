@@ -3,7 +3,7 @@ import { sleep } from './test-utility';
 
 describe('CommandQueue', () => {
 
-	it('executes tasks on a first come, first serve basis', async () => {
+	xit('executes tasks on a first come, first serve basis', async () => {
 
 		const sleepTimes: number[] = [100, 10, 50];
 		const tasks: CommandAction<number>[] = sleepTimes.map(v => (() => sleep(v)));
