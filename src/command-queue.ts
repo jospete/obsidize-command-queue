@@ -1,6 +1,7 @@
-import { Subject, Observable, defer } from 'rxjs';
-import { concatMap, share, switchMap, first } from 'rxjs/operators';
+import { Subject, Observable, defer, merge } from 'rxjs';
+import { concatMap, share, switchMap, first, filter } from 'rxjs/operators';
 
+import { castAbortSignalStream, CommandAbortSignalType } from './command-abort-signal';
 import { CommandAction, CommandConfig, CommandContext } from './command-context';
 import { rxPollyfillLastValueFrom } from './utility';
 
@@ -12,6 +13,9 @@ export class CommandQueue {
 
 	// Internal context input stream to trigger actions from
 	private readonly mContextInputSubject = new Subject<CommandContext<any>>();
+
+	// Internal emitter for abort signals to kill specified tasks
+	private readonly mAbortSignalSubject = new Subject<CommandAbortSignalType>();
 
 	/**
 	 * Stream of context results that will be emitted as 
@@ -40,6 +44,28 @@ export class CommandQueue {
 	 */
 	public get isDestroyed(): boolean {
 		return this.mContextInputSubject.closed;
+	}
+
+	/**
+	 * Observable that will emit when abort() is called with either ALL or ACTIVE.
+	 */
+	public get activeCommandAbortSignal(): Observable<CommandAbortSignalType> {
+		return this.getMaskedAbortSignal(CommandAbortSignalType.ALL, CommandAbortSignalType.ACTIVE);
+	}
+
+	/**
+	 * Observable that will emit when abort() is called with either ALL or PENDING.
+	 */
+	public get pendingCommandAbortSignal(): Observable<CommandAbortSignalType> {
+		return this.getMaskedAbortSignal(CommandAbortSignalType.ALL, CommandAbortSignalType.PENDING);
+	}
+
+	/**
+	 * Used to kill queued and active command contexts.
+	 * Run this with type ALL as a last stage cleanup option when resetting state.
+	 */
+	public abort(type: CommandAbortSignalType): void {
+		this.mAbortSignalSubject.next(type);
 	}
 
 	/**
@@ -77,6 +103,17 @@ export class CommandQueue {
 		this.mActivatorSub.unsubscribe();
 		this.mContextInputSubject.complete();
 		this.mContextInputSubject.unsubscribe();
+		this.mAbortSignalSubject.complete();
+		this.mAbortSignalSubject.unsubscribe();
+	}
+
+	/**
+	 * Implementation detail for generating exposed abort signal streams.
+	 */
+	private getMaskedAbortSignal(...types: CommandAbortSignalType[]): Observable<CommandAbortSignalType> {
+		return this.mAbortSignalSubject.asObservable().pipe(
+			filter((v: CommandAbortSignalType) => types.includes(v))
+		);
 	}
 
 	/**
@@ -87,9 +124,16 @@ export class CommandQueue {
 	 */
 	private enqueue<T>(action: CommandAction<T>, config?: Partial<CommandConfig<T>>): Observable<T> {
 
-		const context = new CommandContext<T>(action, this.createConfig(config));
+		const context = new CommandContext<T>(
+			action,
+			this.createConfig(config),
+			castAbortSignalStream<T>(this.activeCommandAbortSignal)
+		);
 
-		const outputStream = this.results.pipe(
+		const outputStream = merge(
+			this.results,
+			castAbortSignalStream<CommandContext<any>>(this.pendingCommandAbortSignal)
+		).pipe(
 			first((update: CommandContext<any>) => (update === context)),
 			switchMap((update: CommandContext<T>) => update.unwrap())
 		);
