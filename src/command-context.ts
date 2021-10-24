@@ -1,7 +1,7 @@
 import { defer, Observable, ObservableInput, of, merge, EMPTY } from 'rxjs';
 import { map, catchError, timeout, first } from 'rxjs/operators';
 
-import { rxPollyfillLastValueFrom } from './utility';
+import { rxPolyfillLastValueFrom } from './utility';
 
 /**
  * Alias for an action to be executed via the metadata run function.
@@ -102,6 +102,6 @@ export class CommandContext<T> implements CommandContextLike<T> {
 			catchError(error => of(this.setError(error)))
 		);
 
-		return rxPollyfillLastValueFrom(runProcess);
+		return rxPolyfillLastValueFrom(runProcess);
 	}
 }
