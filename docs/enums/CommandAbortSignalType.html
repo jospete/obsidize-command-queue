@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CommandConfig | @obsidize/command-queue</title>
+	<title>CommandAbortSignalType | @obsidize/command-queue</title>
 	<meta name="description" content="Documentation for @obsidize/command-queue">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@obsidize/command-queue</a>
 				</li>
 				<li>
-					<a href="CommandConfig.html">CommandConfig</a>
+					<a href="CommandAbortSignalType.html">CommandAbortSignalType</a>
 				</li>
 			</ul>
-			<h1>Interface CommandConfig&lt;T&gt;</h1>
+			<h1>Enumeration CommandAbortSignalType</h1>
 		</div>
 	</div>
 </header>
@@ -68,86 +68,54 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Configuration options that dictate how a command should be run.
-						Can also contain custom options for a command, like a tag.</p>
+						<p>Types of signals that can be emitted to kill targeted processes.</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">CommandConfig</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-kind-interface tsd-has-type-parameter">
-				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="CommandConfig.html#mocked" class="tsd-kind-icon">mocked</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="CommandConfig.html#seedValue" class="tsd-kind-icon">seed<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="CommandConfig.html#tag" class="tsd-kind-icon">tag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="CommandConfig.html#timeoutMs" class="tsd-kind-icon">timeout<wbr>Ms</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="CommandAbortSignalType.html#ACTIVE" class="tsd-kind-icon">ACTIVE</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="CommandAbortSignalType.html#ALL" class="tsd-kind-icon">ALL</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="CommandAbortSignalType.html#PENDING" class="tsd-kind-icon">PENDING</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="mocked" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mocked</h3>
-					<div class="tsd-signature tsd-kind-icon">mocked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="ACTIVE" class="tsd-anchor"></a>
+					<h3>ACTIVE</h3>
+					<div class="tsd-signature tsd-kind-icon">ACTIVE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ACTIVE&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L18">command-context.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-abort-signal.ts#L11">command-abort-signal.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="seedValue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> seed<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">seed<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="ALL" class="tsd-anchor"></a>
+					<h3>ALL</h3>
+					<div class="tsd-signature tsd-kind-icon">ALL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ALL&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L17">command-context.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-abort-signal.ts#L12">command-abort-signal.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="tag" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> tag</h3>
-					<div class="tsd-signature tsd-kind-icon">tag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="PENDING" class="tsd-anchor"></a>
+					<h3>PENDING</h3>
+					<div class="tsd-signature tsd-kind-icon">PENDING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;PENDING&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L19">command-context.ts:19</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="timeoutMs" class="tsd-anchor"></a>
-					<h3>timeout<wbr>Ms</h3>
-					<div class="tsd-signature tsd-kind-icon">timeout<wbr>Ms<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L16">command-context.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-abort-signal.ts#L10">command-abort-signal.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,9 +131,24 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/CommandAbortSignalType.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Type</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum">
+						<a href="CommandAbortSignalType.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Type</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="CommandAbortSignalType.html#ACTIVE" class="tsd-kind-icon">ACTIVE</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="CommandAbortSignalType.html#ALL" class="tsd-kind-icon">ALL</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="CommandAbortSignalType.html#PENDING" class="tsd-kind-icon">PENDING</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="../classes/CommandAbortSignalError.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Error</a>
 					</li>
@@ -175,27 +158,9 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/CommandQueue.html" class="tsd-kind-icon">Command<wbr>Queue</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="CommandConfig.html" class="tsd-kind-icon">Command<wbr>Config</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="CommandConfig.html#mocked" class="tsd-kind-icon">mocked</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="CommandConfig.html#seedValue" class="tsd-kind-icon">seed<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="CommandConfig.html#tag" class="tsd-kind-icon">tag</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="CommandConfig.html#timeoutMs" class="tsd-kind-icon">timeout<wbr>Ms</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/CommandConfig.html" class="tsd-kind-icon">Command<wbr>Config</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../modules.html#CommandAction" class="tsd-kind-icon">Command<wbr>Action</a>
 					</li>

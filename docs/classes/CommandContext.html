@@ -133,13 +133,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<wbr>Context&lt;T&gt;<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><a href="../modules.html#CommandAction" class="tsd-signature-type" data-tsd-kind="Type alias">CommandAction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, config<span class="tsd-signature-symbol">: </span><a href="../interfaces/CommandConfig.html" class="tsd-signature-type" data-tsd-kind="Interface">CommandConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="CommandContext.html" class="tsd-signature-type" data-tsd-kind="Class">CommandContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<wbr>Context&lt;T&gt;<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><a href="../modules.html#CommandAction" class="tsd-signature-type" data-tsd-kind="Type alias">CommandAction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, config<span class="tsd-signature-symbol">: </span><a href="../interfaces/CommandConfig.html" class="tsd-signature-type" data-tsd-kind="Interface">CommandConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, abortSignal<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="CommandContext.html" class="tsd-signature-type" data-tsd-kind="Class">CommandContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L44">command-context.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L45">command-context.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -155,6 +155,9 @@
 								</li>
 								<li>
 									<h5>config: <a href="../interfaces/CommandConfig.html" class="tsd-signature-type" data-tsd-kind="Interface">CommandConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>abortSignal: <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="CommandContext.html" class="tsd-signature-type" data-tsd-kind="Class">CommandContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -187,7 +190,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of CommandContextLike.error</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L41">command-context.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L42">command-context.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,7 +201,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of CommandContextLike.hasError</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L42">command-context.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L43">command-context.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,7 +212,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of CommandContextLike.result</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L40">command-context.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L41">command-context.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -226,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L87">command-context.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L89">command-context.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -250,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L63">command-context.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L65">command-context.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -278,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L53">command-context.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L55">command-context.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L75">command-context.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L77">command-context.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -332,6 +335,12 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/CommandAbortSignalType.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="CommandAbortSignalError.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Error</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-has-type-parameter">
@@ -381,7 +390,19 @@
 						<a href="../modules.html#CommandAction" class="tsd-kind-icon">Command<wbr>Action</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="../modules.html#rxPollyfillLastValueFrom" class="tsd-kind-icon">rx<wbr>Pollyfill<wbr>Last<wbr>Value<wbr>From</a>
+						<a href="../modules.html#castAbortSignalStream" class="tsd-kind-icon">cast<wbr>Abort<wbr>Signal<wbr>Stream</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#isCommandAbortSignalType" class="tsd-kind-icon">is<wbr>Command<wbr>Abort<wbr>Signal<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#rxPolyfillLastValueFrom" class="tsd-kind-icon">rx<wbr>Polyfill<wbr>Last<wbr>Value<wbr>From</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#rxPolyfillThrowError" class="tsd-kind-icon">rx<wbr>Polyfill<wbr>Throw<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#throwAbortSignalError" class="tsd-kind-icon">throw<wbr>Abort<wbr>Signal<wbr>Error</a>
 					</li>
 				</ul>
 			</nav>

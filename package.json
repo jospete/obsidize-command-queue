@@ -1,6 +1,6 @@
 {
   "name": "@obsidize/command-queue",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Simple rxjs-based queueing mechanism to prevent call overlap of a target interface",
   "author": "Josh Noel <obsidize@gmail.com>",
   "license": "MIT",
