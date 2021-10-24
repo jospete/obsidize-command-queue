@@ -1,4 +1,4 @@
-import { CommandContext, rxPollyfillLastValueFrom } from '../src';
+import { CommandContext } from '../src';
 
 describe('CommandContext', () => {
 
@@ -29,11 +29,11 @@ describe('CommandContext', () => {
 		it('returns an observable of one element when in a non-error state', async () => {
 
 			const context = new CommandContext<any>(() => Promise.resolve(), { timeoutMs: 5000 });
-			const result = await rxPollyfillLastValueFrom(context.unwrap());
+			const result = await context.unwrap();
 			expect(result).not.toBeDefined();
 
 			context.setResult(42);
-			const result2 = await rxPollyfillLastValueFrom(context.unwrap());
+			const result2 = await context.unwrap();
 			expect(result2).toBe(42);
 		});
 
@@ -43,7 +43,7 @@ describe('CommandContext', () => {
 			const context = new CommandContext<any>(() => Promise.resolve(), { timeoutMs: 5000 });
 			context.setError('Does not exist');
 
-			const error = await rxPollyfillLastValueFrom(context.unwrap()).catch(e => e);
+			const error = await context.unwrap().catch(e => e);
 			expect(error).toBe('Does not exist');
 		});
 	});

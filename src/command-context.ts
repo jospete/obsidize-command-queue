@@ -1,4 +1,4 @@
-import { defer, Observable, ObservableInput, of, throwError } from 'rxjs';
+import { defer, ObservableInput, of } from 'rxjs';
 import { map, catchError, timeout, first } from 'rxjs/operators';
 import { rxPollyfillLastValueFrom } from './utility';
 
@@ -72,10 +72,10 @@ export class CommandContext<T> implements CommandContextLike<T> {
 	 * either an emission of the run result, or
 	 * an exception stream for any caught errors.
 	 */
-	public unwrap(): Observable<T> {
+	public unwrap(): Promise<T> {
 		return this.hasError
-			? throwError(() => this.error)
-			: of(this.result!);
+			? Promise.reject(this.error)
+			: Promise.resolve(this.result!);
 	}
 
 	/**

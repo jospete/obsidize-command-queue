@@ -1,5 +1,5 @@
-import { Subject, Observable, timer, merge } from 'rxjs';
-import { concatMap, share, filter, mergeMap, switchMap, first, tap, ignoreElements } from 'rxjs/operators';
+import { Subject, Observable, defer } from 'rxjs';
+import { concatMap, share, mergeMap, switchMap, first } from 'rxjs/operators';
 
 import { CommandAction, CommandConfig, CommandContext } from './command-context';
 import { rxPollyfillLastValueFrom } from './utility';
@@ -89,17 +89,14 @@ export class CommandQueue {
 
 		const context = new CommandContext<T>(action, this.createConfig(config));
 
-		const triggerStream = timer(10).pipe(
-			tap(() => this.mContextInputSubject.next(context)),
-			first(),
-			ignoreElements()
-		);
-
 		const outputStream = this.results.pipe(
-			filter((update: CommandContext<any>) => (update === context)),
+			first((update: CommandContext<any>) => (update === context)),
 			mergeMap((update: CommandContext<T>) => update.unwrap())
 		);
 
-		return merge(triggerStream, outputStream);
+		return defer(() => {
+			this.mContextInputSubject.next(context);
+			return outputStream;
+		});
 	}
 }
