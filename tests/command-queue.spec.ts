@@ -1,5 +1,5 @@
-import { lastValueFrom, of } from 'rxjs';
-import { CommandAction, CommandQueue } from '../src';
+import { of } from 'rxjs';
+import { CommandAction, CommandQueue, rxPollyfillLastValueFrom } from '../src';
 import { sleep } from './test-utility';
 
 describe('CommandQueue', () => {
@@ -43,7 +43,7 @@ describe('CommandQueue', () => {
 
 			const queue = new CommandQueue();
 			const output = of(50);
-			const result = await lastValueFrom(queue.observe(() => output));
+			const result = await rxPollyfillLastValueFrom(queue.observe(() => output));
 
 			expect(result).toBe(50);
 		});
