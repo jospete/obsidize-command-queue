@@ -80,8 +80,8 @@ export class CommandQueue {
 	}
 
 	/**
-	 * Used to kill queued and active command contexts.
-	 * Run this with type ALL as a last stage cleanup option when resetting state.
+	 * Used to kill pending and active command contexts.
+	 * Default abort behavior type is ALL.
 	 */
 	public abort(type: CommandAbortSignalType = CommandAbortSignalType.ALL): void {
 		this.mAbortSignalSubject.next(type);
@@ -97,7 +97,7 @@ export class CommandQueue {
 
 	/**
 	 * Add an action to the queue for pending execution.
-	 * Does not execute until all preceding tasks have completed.
+	 * Does not execute until all preceding commands have completed.
 	 */
 	public add<T>(action: CommandAction<T>, config?: CommandConfig<T>): Promise<T> {
 		return rxPolyfillLastValueFrom(this.enqueue(action, config));
@@ -105,7 +105,7 @@ export class CommandQueue {
 
 	/**
 	 * Special flavor of add() whose value is a pending observable.
-	 * The inner observable will not be created until all preceding tasks have completed.
+	 * The inner observable will not be created until all preceding commands have completed.
 	 */
 	public observe<T>(action: () => Observable<T>, config?: CommandConfig<Observable<T>>): Observable<T> {
 		return this.enqueue(() => Promise.resolve(action()), config).pipe(
@@ -114,8 +114,8 @@ export class CommandQueue {
 	}
 
 	/**
-	 * Tear-down option that cleans up the internal rxjs refs.
-	 * CommandQueue references should be disposed of after this is called.
+	 * Teardown option that cleans up the internal rxjs refs.
+	 * This CommandQueue reference should be disposed of after this is called.
 	 */
 	public destroy(): void {
 

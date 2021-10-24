@@ -4,7 +4,7 @@ import { map, catchError, timeout, first } from 'rxjs/operators';
 import { rxPolyfillLastValueFrom } from './utility';
 
 /**
- * Alias for an action to be executed via the metadata run function.
+ * Alias for an action to be executed via the context run function.
  */
 export type CommandAction<T> = () => ObservableInput<T>;
 
@@ -21,8 +21,8 @@ export interface CommandConfig<T> {
 }
 
 /**
- * Boilerplate interface for a CommandMetadata object.
- * Used to define the bare-minimum required to make a metadata object function correctly.
+ * Boilerplate interface for a context object.
+ * Used to define the bare-minimum required to make a context object function correctly.
  */
 export interface CommandContextLike<T> {
 	readonly config: CommandConfig<T>;
@@ -71,8 +71,8 @@ export class CommandContext<T> implements CommandContextLike<T> {
 
 	/**
 	 * Unboxes the current state of this command as
-	 * either an emission of the run result, or
-	 * an exception stream for any caught errors.
+	 * either an resolution of the run result, or
+	 * a rejection for any caught errors.
 	 */
 	public unwrap(): Promise<T> {
 		return this.hasError
@@ -84,7 +84,7 @@ export class CommandContext<T> implements CommandContextLike<T> {
 	 * Stands up an observable that will execute this command's action,
 	 * and save the result (or error) to be unwrapped later.
 	 * 
-	 * Emits immediately with the seed value when mocked is set to true.
+	 * Emits immediately with the configured seed value when config.mocked is set to true.
 	 */
 	public run(): Promise<CommandContext<T>> {
 
