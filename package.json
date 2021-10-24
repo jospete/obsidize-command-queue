@@ -12,6 +12,10 @@
     "driver",
     "obsidize"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jospete/obsidize-command-queue.git"
+  },
   "scripts": {
     "test": "karma start",
     "test:single": "karma start --single-run",
