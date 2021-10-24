@@ -5,6 +5,9 @@
   "author": "Josh Noel <obsidize@gmail.com>",
   "license": "MIT",
   "main": "index.cjs.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
   "keywords": [
     "command",
     "queue",
