@@ -88,5 +88,14 @@ describe('CommandContext', () => {
 			expect(result.error).toBe(testValue);
 			expect(result.hasError).toBe(true);
 		});
+
+		it('configures an error value when the given input action is malformed', async () => {
+
+			const context = new CommandContext<any>(null, { timeoutMs: 5000 });
+			const result: CommandContext<any> = await rxPollyfillLastValueFrom(context.run());
+
+			expect(result.error).toBeDefined();
+			expect(result.hasError).toBe(true);
+		});
 	});
 });

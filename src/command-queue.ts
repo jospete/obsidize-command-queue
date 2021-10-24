@@ -1,5 +1,5 @@
-import { Subject, Observable, defer } from 'rxjs';
-import { concatMap, share, filter, mergeMap, switchMap } from 'rxjs/operators';
+import { Subject, Observable, timer, merge } from 'rxjs';
+import { concatMap, share, filter, mergeMap, switchMap, ignoreElements, finalize } from 'rxjs/operators';
 
 import { CommandAction, CommandConfig, CommandContext } from './command-context';
 import { rxPollyfillLastValueFrom } from './utility';
@@ -27,12 +27,20 @@ export class CommandQueue {
 	 * supplied in one of the enqueueing methods.
 	 */
 	public readonly rootConfig: CommandConfig<any> = {
+		// Any API call that hangs for 30 seconds should be killed by default
 		timeoutMs: 30000,
 		mocked: false
 	};
 
 	// Locks the "results" stream to an active state by ensuring at least one subscription exists.
 	private readonly mActivatorSub = this.results.subscribe();
+
+	/**
+	 * Returns true if this queue has been destroyed.
+	 */
+	public get isDestroyed(): boolean {
+		return this.mContextInputSubject.closed;
+	}
 
 	/**
 	 * Generates a configuration instance by filling in missing properties from
@@ -65,6 +73,7 @@ export class CommandQueue {
 	 * CommandQueue references should be disposed of after this is called.
 	 */
 	public destroy(): void {
+		if (this.isDestroyed) return;
 		this.mActivatorSub.unsubscribe();
 		this.mContextInputSubject.complete();
 		this.mContextInputSubject.unsubscribe();
@@ -80,14 +89,17 @@ export class CommandQueue {
 
 		const context = new CommandContext<T>(action, this.createConfig(config));
 
+		// We need to add the context to the queue on the next tick so the output stream can be set up.
+		const startStream = timer(10).pipe(
+			finalize(() => this.mContextInputSubject.next(context)),
+			ignoreElements()
+		);
+
 		const outputStream = this.results.pipe(
 			filter((update: CommandContext<any>) => (update === context)),
 			mergeMap((update: CommandContext<T>) => update.unwrap())
 		);
 
-		return defer(() => {
-			this.mContextInputSubject.next(context);
-			return outputStream;
-		});
+		return merge(startStream, outputStream);
 	}
 }
