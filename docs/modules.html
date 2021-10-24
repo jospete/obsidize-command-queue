@@ -62,8 +62,15 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum"><a href="enums/CommandAbortSignalType.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Type</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-class"><a href="classes/CommandAbortSignalError.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Error</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/CommandContext.html" class="tsd-kind-icon">Command<wbr>Context</a></li>
 								<li class="tsd-kind-class"><a href="classes/CommandQueue.html" class="tsd-kind-icon">Command<wbr>Queue</a></li>
 							</ul>
@@ -83,7 +90,11 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#rxPollyfillLastValueFrom" class="tsd-kind-icon">rx<wbr>Pollyfill<wbr>Last<wbr>Value<wbr>From</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#castAbortSignalStream" class="tsd-kind-icon">cast<wbr>Abort<wbr>Signal<wbr>Stream</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#isCommandAbortSignalType" class="tsd-kind-icon">is<wbr>Command<wbr>Abort<wbr>Signal<wbr>Type</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#rxPolyfillLastValueFrom" class="tsd-kind-icon">rx<wbr>Polyfill<wbr>Last<wbr>Value<wbr>From</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#rxPolyfillThrowError" class="tsd-kind-icon">rx<wbr>Polyfill<wbr>Throw<wbr>Error</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#throwAbortSignalError" class="tsd-kind-icon">throw<wbr>Abort<wbr>Signal<wbr>Error</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,7 +108,7 @@
 					<div class="tsd-signature tsd-kind-icon">Command<wbr>Action&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ObservableInput</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/command-context.ts#L8">command-context.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-context.ts#L9">command-context.ts:9</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -131,16 +142,78 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="rxPollyfillLastValueFrom" class="tsd-anchor"></a>
-					<h3>rx<wbr>Pollyfill<wbr>Last<wbr>Value<wbr>From</h3>
+					<a name="castAbortSignalStream" class="tsd-anchor"></a>
+					<h3>cast<wbr>Abort<wbr>Signal<wbr>Stream</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">rx<wbr>Pollyfill<wbr>Last<wbr>Value<wbr>From&lt;T&gt;<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">cast<wbr>Abort<wbr>Signal<wbr>Stream&lt;T&gt;<span class="tsd-signature-symbol">(</span>input<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/CommandAbortSignalType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">CommandAbortSignalType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/d889f1d/src/utility.ts#L6">utility.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-abort-signal.ts#L45">command-abort-signal.ts:45</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Utility to convert a normal stream into one that will throw on emission.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>input: <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/CommandAbortSignalType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">CommandAbortSignalType</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="isCommandAbortSignalType" class="tsd-anchor"></a>
+					<h3>is<wbr>Command<wbr>Abort<wbr>Signal<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Command<wbr>Abort<wbr>Signal<wbr>Type<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-abort-signal.ts#L18">command-abort-signal.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if a target value is a valid abort signal type.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="rxPolyfillLastValueFrom" class="tsd-anchor"></a>
+					<h3>rx<wbr>Polyfill<wbr>Last<wbr>Value<wbr>From</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">rx<wbr>Polyfill<wbr>Last<wbr>Value<wbr>From&lt;T&gt;<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/utility.ts#L13">utility.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,6 +237,68 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="rxPolyfillThrowError" class="tsd-anchor"></a>
+					<h3>rx<wbr>Polyfill<wbr>Throw<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">rx<wbr>Polyfill<wbr>Throw<wbr>Error&lt;T&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/utility.ts#L6">utility.ts:6</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Polyfill for old (&lt; rxjs 7) throwError behavior, since rxjs 7+ requires a function instead.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>error: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="throwAbortSignalError" class="tsd-anchor"></a>
+					<h3>throw<wbr>Abort<wbr>Signal<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">throw<wbr>Abort<wbr>Signal<wbr>Error&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/CommandAbortSignalType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">CommandAbortSignalType</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/jospete/obsidize-command-queue/blob/7321019/src/command-abort-signal.ts#L36">command-abort-signal.ts:36</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Utility operator to inject an CommandAbortSignalError instance into a stream.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">OperatorFunction</span><span class="tsd-signature-symbol">&lt;</span><a href="enums/CommandAbortSignalType.html" class="tsd-signature-type" data-tsd-kind="Enumeration">CommandAbortSignalType</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -176,6 +311,12 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/CommandAbortSignalType.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/CommandAbortSignalError.html" class="tsd-kind-icon">Command<wbr>Abort<wbr>Signal<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/CommandContext.html" class="tsd-kind-icon">Command<wbr>Context</a>
 					</li>
@@ -189,7 +330,19 @@
 						<a href="modules.html#CommandAction" class="tsd-kind-icon">Command<wbr>Action</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#rxPollyfillLastValueFrom" class="tsd-kind-icon">rx<wbr>Pollyfill<wbr>Last<wbr>Value<wbr>From</a>
+						<a href="modules.html#castAbortSignalStream" class="tsd-kind-icon">cast<wbr>Abort<wbr>Signal<wbr>Stream</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#isCommandAbortSignalType" class="tsd-kind-icon">is<wbr>Command<wbr>Abort<wbr>Signal<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#rxPolyfillLastValueFrom" class="tsd-kind-icon">rx<wbr>Polyfill<wbr>Last<wbr>Value<wbr>From</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#rxPolyfillThrowError" class="tsd-kind-icon">rx<wbr>Polyfill<wbr>Throw<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#throwAbortSignalError" class="tsd-kind-icon">throw<wbr>Abort<wbr>Signal<wbr>Error</a>
 					</li>
 				</ul>
 			</nav>

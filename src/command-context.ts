@@ -1,6 +1,7 @@
-import { defer, ObservableInput, of } from 'rxjs';
+import { defer, Observable, ObservableInput, of, merge, EMPTY } from 'rxjs';
 import { map, catchError, timeout, first } from 'rxjs/operators';
-import { rxPollyfillLastValueFrom } from './utility';
+
+import { rxPolyfillLastValueFrom } from './utility';
 
 /**
  * Alias for an action to be executed via the metadata run function.
@@ -43,7 +44,8 @@ export class CommandContext<T> implements CommandContextLike<T> {
 
 	constructor(
 		public readonly action: CommandAction<T>,
-		public readonly config: CommandConfig<T>
+		public readonly config: CommandConfig<T>,
+		private readonly abortSignal: Observable<T> = EMPTY
 	) {
 	}
 
@@ -90,13 +92,16 @@ export class CommandContext<T> implements CommandContextLike<T> {
 			return Promise.resolve(this.setResult(this.config.seedValue!));
 		}
 
-		const runProcess = defer(() => this.action()).pipe(
+		const runProcess = merge(
+			defer(() => this.action()),
+			this.abortSignal
+		).pipe(
 			first(),
 			timeout(this.config.timeoutMs),
 			map((result: T) => this.setResult(result)),
 			catchError(error => of(this.setError(error)))
 		);
 
-		return rxPollyfillLastValueFrom(runProcess);
+		return rxPolyfillLastValueFrom(runProcess);
 	}
 }
