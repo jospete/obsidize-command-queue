@@ -28,3 +28,7 @@ const resultList = await Promise.all([1, 2, 3, 4, 5].map(v => {
 // If the result is a deferred Observable
 const observable = queue.observe(() => generatedDeferredObservable());
 ```
+
+## API
+
+Source documentation can be found [here](https://jospete.github.io/obsidize-command-queue/)
