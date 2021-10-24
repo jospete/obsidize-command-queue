@@ -93,7 +93,7 @@ export class CommandContext<T> implements CommandContextLike<T> {
 		}
 
 		const runProcess = merge(
-			defer(() => this.action()),
+			defer((this.action)),
 			this.abortSignal
 		).pipe(
 			first(),
