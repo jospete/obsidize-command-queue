@@ -1,5 +1,6 @@
 import { defer, Observable, ObservableInput, of, throwError } from 'rxjs';
 import { map, catchError, timeout, first } from 'rxjs/operators';
+import { rxPollyfillLastValueFrom } from './utility';
 
 /**
  * Alias for an action to be executed via the metadata run function.
@@ -83,17 +84,19 @@ export class CommandContext<T> implements CommandContextLike<T> {
 	 * 
 	 * Emits immediately with the seed value when mocked is set to true.
 	 */
-	public run(): Observable<CommandContext<T>> {
+	public run(): Promise<CommandContext<T>> {
 
 		if (this.config.mocked) {
-			return of(this.setResult(this.config.seedValue!));
+			return Promise.resolve(this.setResult(this.config.seedValue!));
 		}
 
-		return defer(() => this.action()).pipe(
-			map((result: T) => this.setResult(result)),
+		const runProcess = defer(() => this.action()).pipe(
 			first(),
 			timeout(this.config.timeoutMs),
+			map((result: T) => this.setResult(result)),
 			catchError(error => of(this.setError(error)))
 		);
+
+		return rxPollyfillLastValueFrom(runProcess);
 	}
 }

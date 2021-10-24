@@ -1,3 +1,4 @@
+import { lastValueFrom, of } from 'rxjs';
 import { CommandAction, CommandQueue } from '../src';
 import { sleep } from './test-utility';
 
@@ -12,11 +13,11 @@ describe('CommandQueue', () => {
 		const queue = new CommandQueue();
 		const promises = tasks.map((action, i) => queue.add(action).then(taskSpies[i]));
 
-		// await Promise.all(promises);
+		await Promise.all(promises);
 
-		// for (let i = 0; i < taskSpies.length - 1; i++) {
-		// 	expect(taskSpies[i]).toHaveBeenCalledBefore(taskSpies[i + 1]);
-		// }
+		for (let i = 0; i < taskSpies.length - 1; i++) {
+			expect(taskSpies[i]).toHaveBeenCalledBefore(taskSpies[i + 1]);
+		}
 	});
 
 	it('can be destroyed', async () => {
@@ -34,5 +35,17 @@ describe('CommandQueue', () => {
 		} catch (e) {
 			expect(e).toBeDefined();
 		}
+	});
+
+	describe('observe()', () => {
+
+		it('emits the inner wrapped observable', async () => {
+
+			const queue = new CommandQueue();
+			const output = of(50);
+			const result = await lastValueFrom(queue.observe(() => output));
+
+			expect(result).toBe(50);
+		});
 	});
 });

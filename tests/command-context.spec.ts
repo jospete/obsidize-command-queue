@@ -60,7 +60,7 @@ describe('CommandContext', () => {
 				seedValue: 1234
 			});
 
-			const result: CommandContext<any> = await rxPollyfillLastValueFrom(context.run());
+			const result: CommandContext<any> = await context.run();
 
 			expect(result).toBe(context);
 			expect(result.result).toBe(context.config.seedValue);
@@ -72,7 +72,7 @@ describe('CommandContext', () => {
 			const testValue = { testObj: true };
 			const action = jasmine.createSpy('contextAction').and.callFake(() => Promise.resolve(testValue));
 			const context = new CommandContext<any>(action, { timeoutMs: 5000 });
-			const result: CommandContext<any> = await rxPollyfillLastValueFrom(context.run());
+			const result: CommandContext<any> = await context.run();
 
 			expect(result.result).toBe(testValue);
 			expect(result.hasError).toBe(false);
@@ -83,7 +83,7 @@ describe('CommandContext', () => {
 			const testValue = { error: true, message: 'this should explode' };
 			const action = jasmine.createSpy('contextAction').and.callFake(() => Promise.reject(testValue));
 			const context = new CommandContext<any>(action, { timeoutMs: 5000 });
-			const result: CommandContext<any> = await rxPollyfillLastValueFrom(context.run());
+			const result: CommandContext<any> = await context.run();
 
 			expect(result.error).toBe(testValue);
 			expect(result.hasError).toBe(true);
@@ -92,7 +92,7 @@ describe('CommandContext', () => {
 		it('configures an error value when the given input action is malformed', async () => {
 
 			const context = new CommandContext<any>(null, { timeoutMs: 5000 });
-			const result: CommandContext<any> = await rxPollyfillLastValueFrom(context.run());
+			const result: CommandContext<any> = await context.run();
 
 			expect(result.error).toBeDefined();
 			expect(result.hasError).toBe(true);

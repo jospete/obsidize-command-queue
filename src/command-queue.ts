@@ -1,5 +1,5 @@
 import { Subject, Observable, timer, merge } from 'rxjs';
-import { concatMap, share, filter, mergeMap, switchMap, ignoreElements, finalize } from 'rxjs/operators';
+import { concatMap, share, filter, mergeMap, switchMap, first, tap, ignoreElements } from 'rxjs/operators';
 
 import { CommandAction, CommandConfig, CommandContext } from './command-context';
 import { rxPollyfillLastValueFrom } from './utility';
@@ -18,7 +18,7 @@ export class CommandQueue {
 	 * each action finishes (either with a result or with an error)
 	 */
 	public readonly results = this.mContextInputSubject.asObservable().pipe(
-		concatMap((context: CommandContext<any>) => context.run()!),
+		concatMap((context: CommandContext<any>) => context.run()),
 		share()
 	);
 
@@ -62,9 +62,9 @@ export class CommandQueue {
 	 * Special flavor of add() whose value is a pending observable.
 	 * The inner observable will not be created until all preceding tasks have completed.
 	 */
-	public observe<T, R extends Observable<T>>(action: CommandAction<R>, config?: CommandConfig<R>): Observable<T> {
-		return this.enqueue(action, config).pipe(
-			switchMap((value: R) => value!)
+	public observe<T>(action: () => Observable<T>, config?: CommandConfig<Observable<T>>): Observable<T> {
+		return this.enqueue(() => Promise.resolve(action()), config).pipe(
+			switchMap((value: Observable<T>) => value!)
 		);
 	}
 
@@ -89,9 +89,9 @@ export class CommandQueue {
 
 		const context = new CommandContext<T>(action, this.createConfig(config));
 
-		// We need to add the context to the queue on the next tick so the output stream can be set up.
-		const startStream = timer(10).pipe(
-			finalize(() => this.mContextInputSubject.next(context)),
+		const triggerStream = timer(10).pipe(
+			tap(() => this.mContextInputSubject.next(context)),
+			first(),
 			ignoreElements()
 		);
 
@@ -100,6 +100,6 @@ export class CommandQueue {
 			mergeMap((update: CommandContext<T>) => update.unwrap())
 		);
 
-		return merge(startStream, outputStream);
+		return merge(triggerStream, outputStream);
 	}
 }
