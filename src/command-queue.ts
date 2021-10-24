@@ -1,5 +1,5 @@
 import { Subject, Observable, defer } from 'rxjs';
-import { concatMap, share, mergeMap, switchMap, first } from 'rxjs/operators';
+import { concatMap, share, switchMap, first } from 'rxjs/operators';
 
 import { CommandAction, CommandConfig, CommandContext } from './command-context';
 import { rxPollyfillLastValueFrom } from './utility';
@@ -64,7 +64,7 @@ export class CommandQueue {
 	 */
 	public observe<T>(action: () => Observable<T>, config?: CommandConfig<Observable<T>>): Observable<T> {
 		return this.enqueue(() => Promise.resolve(action()), config).pipe(
-			switchMap((value: Observable<T>) => value!)
+			switchMap((value: Observable<T>) => value)
 		);
 	}
 
@@ -91,7 +91,7 @@ export class CommandQueue {
 
 		const outputStream = this.results.pipe(
 			first((update: CommandContext<any>) => (update === context)),
-			mergeMap((update: CommandContext<T>) => update.unwrap())
+			switchMap((update: CommandContext<T>) => update.unwrap())
 		);
 
 		return defer(() => {

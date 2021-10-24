@@ -10,7 +10,7 @@ export function rxPollyfillLastValueFrom<T>(source: Observable<T>): Promise<T> {
 		let lastValue: T;
 
 		source.subscribe({
-			next: v => (lastValue = v),
+			next: (v: T) => (lastValue = v),
 			error: reject,
 			complete: () => resolve(lastValue)
 		});
