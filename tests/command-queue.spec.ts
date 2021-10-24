@@ -1,5 +1,6 @@
 import { of } from 'rxjs';
-import { CommandAction, CommandQueue, rxPollyfillLastValueFrom } from '../src';
+
+import { CommandAbortSignalError, CommandAbortSignalType, CommandAction, CommandQueue, rxPollyfillLastValueFrom } from '../src';
 import { sleep } from './test-utility';
 
 describe('CommandQueue', () => {
@@ -46,6 +47,22 @@ describe('CommandQueue', () => {
 			const result = await rxPollyfillLastValueFrom(queue.observe(() => output));
 
 			expect(result).toBe(50);
+		});
+	});
+
+	describe('abort()', () => {
+
+		it('kills active processes when the ACTIVE type is used', async () => {
+
+			const queue = new CommandQueue();
+			const reallyLongActionPromise = queue.add(() => sleep(500000));
+			const catchSpy = jasmine.createSpy('catchSpy').and.callFake(e => e);
+
+			queue.abort(CommandAbortSignalType.ACTIVE);
+
+			const error = await reallyLongActionPromise.catch(catchSpy);
+			expect(catchSpy).toHaveBeenCalledTimes(1);
+			expect(error).toBeDefined();
 		});
 	});
 });

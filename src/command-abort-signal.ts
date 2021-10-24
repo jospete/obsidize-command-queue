@@ -1,5 +1,7 @@
-import { Observable, OperatorFunction, throwError } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Observable, OperatorFunction } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+import { rxPollyfillThrowError } from './utility';
 
 /**
  * Types of signals that can be emitted to kill targeted processes.
@@ -11,12 +13,19 @@ export enum CommandAbortSignalType {
 }
 
 /**
+ * Checks if a target value is a valid abort signal type.
+ */
+export function isCommandAbortSignalType(value: any): boolean {
+	return Object.values(CommandAbortSignalType).includes(value);
+}
+
+/**
  * Type thrown when an abort signal is emitted.
  */
 export class CommandAbortSignalError extends Error {
 
 	constructor(
-		public readonly type: CommandAbortSignalType,
+		public readonly abortSignalType: CommandAbortSignalType,
 		message?: string
 	) {
 		super(message);
@@ -28,7 +37,7 @@ export class CommandAbortSignalError extends Error {
  */
 export function throwAbortSignalError<T>(): OperatorFunction<CommandAbortSignalType, T> {
 	return source => source.pipe(
-		mergeMap((v: CommandAbortSignalType) => throwError(() => new CommandAbortSignalError(v)))
+		switchMap((v: CommandAbortSignalType) => rxPollyfillThrowError<T>(new CommandAbortSignalError(v)))
 	);
 }
 
